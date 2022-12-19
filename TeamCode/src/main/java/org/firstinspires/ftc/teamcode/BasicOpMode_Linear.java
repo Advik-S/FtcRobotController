@@ -1,14 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+﻿package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
-public class linearStuff {
-    /* Copyright (c) 2017 FIRST. All rights reserved.
+/* Copyright (c) 2017 FIRST. All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without modification,
      * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -50,7 +47,7 @@ public class linearStuff {
      */
 
     @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
-    @Disabled
+    //@Disabled
     public class BasicOpMode_Linear extends LinearOpMode {
 
         // Declare OpMode members.
@@ -94,27 +91,13 @@ public class linearStuff {
 
 
 
-                if (gamepad1.a) {
-                    leftFront.setDirection(DcMotor.Direction.FORWARD);
-                    rightFront.setDirection(DcMotor.Direction.FORWARD);
-                    leftBack.setDirection(DcMotor.Direction.FORWARD);
-                    rightBack.setDirection(DcMotor.Direction.FORWARD);
-
-                    leftFront.setPower(power);
-                    rightFront.setPower(power);
-                    leftBack.setPower(power);
-                    rightBack.setPower(power);
+                if (Math.abs(gamepad1.right_stick_y) > 0.01) {
+                    rightFront.setPower(gamepad1.right_stick_y);
+                    rightBack.setPower(gamepad1.right_stick_y);
                 }
-                if (gamepad1.b) {
-                    leftFront.setDirection(DcMotor.Direction.REVERSE);
-                    rightFront.setDirection(DcMotor.Direction.REVERSE);
-                    leftBack.setDirection(DcMotor.Direction.REVERSE);
-                    rightBack.setDirection(DcMotor.Direction.REVERSE);
-
-                    leftFront.setPower(power);
-                    rightFront.setPower(power);
-                    leftBack.setPower(power);
-                    rightBack.setPower(power);
+                if (Math.abs(gamepad1.left_stick_y) > 0.01) {
+                    leftFront.setPower(gamepad1.left_stick_y);
+                    leftBack.setPower(gamepad1.left_stick_y);
                 }
 
                 leftFront.setPower(0);
@@ -124,5 +107,3 @@ public class linearStuff {
             }
         }
     }
-
-}
