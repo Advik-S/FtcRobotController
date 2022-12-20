@@ -87,17 +87,32 @@ import com.qualcomm.robotcore.util.ElapsedTime;
             while (opModeIsActive()) {
 
                 // Setup a variable for each drive wheel to save power level for telemetry
-                int power = 10;
-
-
-
+                /*Double Forward --> Move Forward
+                Double Backward --> Move Backward
+                One Forward One Backward --> Strafing
+                 */
                 if (Math.abs(gamepad1.right_stick_y) > 0.01) {
                     rightFront.setPower(gamepad1.right_stick_y);
-                    rightBack.setPower(gamepad1.right_stick_y);
+                    leftBack.setPower(gamepad1.right_stick_y);
                 }
                 if (Math.abs(gamepad1.left_stick_y) > 0.01) {
                     leftFront.setPower(gamepad1.left_stick_y);
-                    leftBack.setPower(gamepad1.left_stick_y);
+                    rightBack.setPower(gamepad1.left_stick_y);
+                }
+
+                // Right Stick Button --> Turn Clockwise
+                if (gamepad1.right_bumper){
+                   leftFront.setPower(-1);
+                   leftBack.setPower(-1);
+                   rightFront.setPower(1);
+                   rightBack.setPower(1);
+                }
+                // Left Stick Button --> Turn Counterclockwise
+                if (gamepad1.left_bumper){
+                    leftFront.setPower(1);
+                    leftBack.setPower(1);
+                    rightFront.setPower(-1);
+                    rightBack.setPower(-1);
                 }
 
                 leftFront.setPower(0);
